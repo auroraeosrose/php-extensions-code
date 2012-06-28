@@ -46,6 +46,10 @@
 extern zend_module_entry uriparser_module_entry;
 #define phpext_uriparser_ptr &uriparser_module_entry
 
+PHP_MINIT_FUNCTION(uriparser_uri);
+
+#define PHP_URIPARSER_NS "UriParser"
+
 #endif /* PHP_URIPARSER_H */
 
 /*

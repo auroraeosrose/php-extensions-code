@@ -40,5 +40,5 @@ if test "$PHP_URIPARSER" != "no"; then
 
     PHP_SUBST(URIPARSER_SHARED_LIBADD)
   
-    PHP_NEW_EXTENSION(uriparser, php_uriparser.c, $ext_shared)
+    PHP_NEW_EXTENSION(uriparser, php_uriparser.c uri.c, $ext_shared)
 fi

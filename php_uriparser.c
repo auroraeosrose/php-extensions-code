@@ -34,6 +34,15 @@ PHP_FUNCTION(uriparser_version)
 }
 /* }}} */
 
+/* {{{ PHP_MINIT_FUNCTION */
+PHP_MINIT_FUNCTION(uriparser)
+{
+	PHP_MINIT(uriparser_uri)(INIT_FUNC_ARGS_PASSTHRU);
+    
+    return SUCCESS;
+}
+/* }}} */
+
 /* {{{ PHP_MINFO_FUNCTION */
 PHP_MINFO_FUNCTION(uriparser)
 {
@@ -57,7 +66,7 @@ zend_module_entry uriparser_module_entry = {
 	STANDARD_MODULE_HEADER,
 	"uriparser",
 	uriparser_functions,
-	NULL, /* MINIT */
+	PHP_MINIT(uriparser),
 	NULL, /* MSHUTDOWN */
 	NULL, /* RINIT */
 	NULL, /* RSHUTDOWN */
