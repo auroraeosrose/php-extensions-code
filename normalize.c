@@ -16,42 +16,29 @@
   +----------------------------------------------------------------------+
 */
 
-#ifndef PHP_URIPARSER_H
-#define PHP_URIPARSER_H
+#include "php_uriparser.h"
 
-#define PHP_URIPARSER_VERSION "0.1.0-dev"
+zend_class_entry *uriparser_normalize_ce;
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
+/* {{{ PHP_MINIT_FUNCTION */
+PHP_MINIT_FUNCTION(uriparser_normalize)
+{
+	zend_class_entry ce;
+    
+	INIT_CLASS_ENTRY(ce, ZEND_NS_NAME(PHP_URIPARSER_NS, "Normalize"), NULL);
+	uriparser_normalize_ce = zend_register_internal_class(&ce TSRMLS_CC);
+	uriparser_normalize_ce->ce_flags |= ZEND_ACC_FINAL | ZEND_ACC_ABSTRACT;
+	
+	zend_declare_class_constant_long(uriparser_normalize_ce, "FRAGMENT", sizeof("FRAGMENT")-1, (long)URI_NORMALIZE_FRAGMENT TSRMLS_CC);
+	zend_declare_class_constant_long(uriparser_normalize_ce, "HOST", sizeof("HOST")-1, (long)URI_NORMALIZE_HOST TSRMLS_CC); 
+	zend_declare_class_constant_long(uriparser_normalize_ce, "PATH", sizeof("PATH")-1, (long)URI_NORMALIZE_PATH TSRMLS_CC); 
+	zend_declare_class_constant_long(uriparser_normalize_ce, "QUERY", sizeof("QUERY")-1, (long)URI_NORMALIZE_QUERY TSRMLS_CC); 
+	zend_declare_class_constant_long(uriparser_normalize_ce, "SCHEME", sizeof("SCHEME")-1, (long)URI_NORMALIZE_SCHEME TSRMLS_CC); 
+	zend_declare_class_constant_long(uriparser_normalize_ce, "USER_INFO", sizeof("USER_INFO")-1, (long)URI_NORMALIZE_USER_INFO TSRMLS_CC); 
 
-#ifdef ZTS
-#include "TSRM.h"
-#endif
-
-/* Standard PHP headers */
-#include "php.h"
-
-/* Our library header */
-#include <uriparser/Uri.h>
-
-#ifdef PHP_WIN32
-#	define PHP_URIPARSER_API __declspec(dllexport)
-#elif defined(__GNUC__) && __GNUC__ >= 4
-#	define PHP_URIPARSER_API __attribute__ ((visibility("default")))
-#else
-#	define PHP_URIPARSER_API
-#endif
-
-extern zend_module_entry uriparser_module_entry;
-#define phpext_uriparser_ptr &uriparser_module_entry
-
-PHP_MINIT_FUNCTION(uriparser_uri);
-PHP_MINIT_FUNCTION(uriparser_normalize);
-
-#define PHP_URIPARSER_NS "UriParser"
-
-#endif /* PHP_URIPARSER_H */
+	return SUCCESS;
+}
+/* }}} */
 
 /*
  * Local variables:

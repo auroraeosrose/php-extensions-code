@@ -1,5 +1,5 @@
 php-extensions-code
 ===================
 
-The add-class-properties branch tacks on - well - properties from the struct we want as nulls
-in our uri class, note we also update our test to look our for our new stuff as well
+The add-class-constants branch adds an additional c file for the normalize class, plus another minit for it
+notice the class is abstract and final since it's basically just a container for constants

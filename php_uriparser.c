@@ -38,8 +38,9 @@ PHP_FUNCTION(uriparser_version)
 PHP_MINIT_FUNCTION(uriparser)
 {
 	PHP_MINIT(uriparser_uri)(INIT_FUNC_ARGS_PASSTHRU);
-    
-    return SUCCESS;
+	PHP_MINIT(uriparser_normalize)(INIT_FUNC_ARGS_PASSTHRU);
+	
+	return SUCCESS;
 }
 /* }}} */
 
