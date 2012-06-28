@@ -1,7 +1,5 @@
 php-extensions-code
 ===================
 
-The add-class-methods branch adds a single parse method (along with it's test) that actually
-talks to the uriparser library and returns true or false if the path provided by PHP is valid
-
-note that a method looks VERY similar to a PHP function, just slightly different macros
+The manipulate-this branch adds an additional method, and changes scheme to a protected property (for no real reason)
+then it uses setScheme to alter the value and getThis() inside to get the C equivalent of $this
