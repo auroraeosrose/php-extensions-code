@@ -19,11 +19,27 @@
 #include "php_uriparser.h"
 #include "ext/standard/info.h"
 
+ZEND_BEGIN_ARG_INFO(uriparser_version_args, ZEND_SEND_BY_VAL)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto int uriparser_version(void)
+ Returns a string version number of the uriparser library being used */
+PHP_FUNCTION(uriparser_version)
+{
+	if (zend_parse_parameters_none() == FAILURE) {
+		return;
+	}
+    
+	RETURN_STRING(URI_VER_ANSI, 1);
+}
+/* }}} */
+
 /* {{{ PHP_MINFO_FUNCTION */
 PHP_MINFO_FUNCTION(uriparser)
 {
 	php_info_print_table_start();
 	php_info_print_table_header(2, "Uriparser Library Bindings", "enabled");
+	php_info_print_table_row(2, "Uriparser Library Version", URI_VER_ANSI);
 	php_info_print_table_row(2, "Extension Version", PHP_URIPARSER_VERSION);
 	php_info_print_table_end();
 }
@@ -31,7 +47,8 @@ PHP_MINFO_FUNCTION(uriparser)
 
 /* {{{ uriparser_functions[] */
 static const zend_function_entry uriparser_functions[] = {
-		ZEND_FE_END
+	PHP_FE(uriparser_version, uriparser_version_args)
+	ZEND_FE_END
 };
 /* }}} */
 

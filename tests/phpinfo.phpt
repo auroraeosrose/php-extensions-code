@@ -20,4 +20,5 @@ var_dump($data);
 ?>
 --EXPECTF--
 string(%d) "Uriparser Library Bindings => enabled
+Uriparser Library Version => %s
 Extension Version => %s"

@@ -16,37 +16,43 @@
   +----------------------------------------------------------------------+
 */
 
-#ifndef PHP_URIPARSER_H
-#define PHP_URIPARSER_H
+#include "php_uriparser.h"
 
-#define PHP_URIPARSER_VERSION "0.1.0-dev"
+zend_class_entry *uriparser_uri_ce;
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
+ZEND_BEGIN_ARG_INFO(uriparser_uri_test_args, ZEND_SEND_BY_VAL)
+	ZEND_ARG_INFO(0, name)
+ZEND_END_ARG_INFO()
 
-#ifdef ZTS
-#include "TSRM.h"
-#endif
+PHP_METHOD(UriParser_Uri, test)
+{
+	char * name;
+	int len;
 
-/* Standard PHP headers */
-#include "php.h"
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &name, &len) == FAILURE) {
+		return;
+	}
 
-/* Our library header */
-#include <uriparser/Uri.h>
+	php_printf("Hello stranger, this is a test for %s!\n", name);
+}
 
-#ifdef PHP_WIN32
-#	define PHP_URIPARSER_API __declspec(dllexport)
-#elif defined(__GNUC__) && __GNUC__ >= 4
-#	define PHP_URIPARSER_API __attribute__ ((visibility("default")))
-#else
-#	define PHP_URIPARSER_API
-#endif
+/* {{{ uriparser_uri_test_args[] */
+zend_function_entry uriparser_uri_methods[] = {
+	PHP_ME(UriParser_Uri, test, uriparser_uri_test_args, ZEND_ACC_PUBLIC)
+	ZEND_FE_END
+};
+/* }}} */
 
-extern zend_module_entry uriparser_module_entry;
-#define phpext_uriparser_ptr &uriparser_module_entry
+/* {{{ PHP_MINIT_FUNCTION */
+PHP_MINIT_FUNCTION(uriparser_uri)
+{
+	zend_class_entry ce;
 
-#endif /* PHP_URIPARSER_H */
+	INIT_CLASS_ENTRY(ce, ZEND_NS(PHP_URIPARSER_NS, "Uri"), uriparser_uri_methods);
+
+	return SUCCESS;
+}
+/* }}} */
 
 /*
  * Local variables:

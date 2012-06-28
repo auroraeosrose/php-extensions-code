@@ -1,6 +1,6 @@
 php-extensions-code
 ===================
 
-The scaffolding branch is a very simple example of an extension for what will be a uriparser library wrapper
-we have a .gitignore for all our junk, a simple .m4 (we'll add the .w32 version later), and simple scaffolding, along
-with a single test to make sure our phpinfo is right and a simple .c file to define our module (PHP extension)
+The attach-library branch actually brings in the uriparser library (uriparser.sourceforge.net)
+and adds a VERY simple php function from the extension to retrieve the current version of the library
+It also adds a test for the version function to make sure it actually works, and adds a line to the phpinfo block for the extension
