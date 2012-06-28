@@ -1,5 +1,5 @@
 php-extensions-code
 ===================
 
-The add-basic-class branch adds a namespaced PHP class (UriParser\Uri) which eventually will be our struct/ish container for uri parsed information
-This also finally adds an MINIT into our module struct, because we want to register our internal class with PHP when we start up
+The add-class-properties branch tacks on - well - properties from the struct we want as nulls
+in our uri class, note we also update our test to look our for our new stuff as well

@@ -11,5 +11,21 @@ $uri = new Uri;
 var_dump($uri);
 ?>
 --EXPECTF--
-object(UriParser\Uri)#%d (0) {
+object(UriParser\Uri)#%d (8) {
+  ["scheme"]=>
+  NULL
+  ["user"]=>
+  NULL
+  ["host"]=>
+  NULL
+  ["port"]=>
+  NULL
+  ["path"]=>
+  NULL
+  ["query"]=>
+  NULL
+  ["fragment"]=>
+  NULL
+  ["isAbsolute"]=>
+  NULL
 }

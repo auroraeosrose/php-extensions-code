@@ -33,6 +33,14 @@ PHP_MINIT_FUNCTION(uriparser_uri)
 
 	INIT_CLASS_ENTRY(ce, ZEND_NS_NAME(PHP_URIPARSER_NS, "Uri"), uriparser_uri_methods);
 	uriparser_uri_ce = zend_register_internal_class(&ce TSRMLS_CC);
+	zend_declare_property_null(uriparser_uri_ce, ZEND_STRS("scheme")-1, ZEND_ACC_PUBLIC TSRMLS_CC);
+	zend_declare_property_null(uriparser_uri_ce, ZEND_STRS("user")-1, ZEND_ACC_PUBLIC TSRMLS_CC);
+	zend_declare_property_null(uriparser_uri_ce, ZEND_STRS("host")-1, ZEND_ACC_PUBLIC TSRMLS_CC);
+	zend_declare_property_null(uriparser_uri_ce, ZEND_STRS("port")-1, ZEND_ACC_PUBLIC TSRMLS_CC);
+	zend_declare_property_null(uriparser_uri_ce, ZEND_STRS("path")-1, ZEND_ACC_PUBLIC TSRMLS_CC);
+	zend_declare_property_null(uriparser_uri_ce, ZEND_STRS("query")-1, ZEND_ACC_PUBLIC TSRMLS_CC);
+	zend_declare_property_null(uriparser_uri_ce, ZEND_STRS("fragment")-1, ZEND_ACC_PUBLIC TSRMLS_CC);
+	zend_declare_property_null(uriparser_uri_ce, ZEND_STRS("isAbsolute")-1, ZEND_ACC_PUBLIC TSRMLS_CC);
 
 	return SUCCESS;
 }
