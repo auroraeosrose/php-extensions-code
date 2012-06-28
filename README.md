@@ -1,5 +1,7 @@
 php-extensions-code
 ===================
 
-The add-class-constants branch adds an additional c file for the normalize class, plus another minit for it
-notice the class is abstract and final since it's basically just a container for constants
+The add-class-methods branch adds a single parse method (along with it's test) that actually
+talks to the uriparser library and returns true or false if the path provided by PHP is valid
+
+note that a method looks VERY similar to a PHP function, just slightly different macros

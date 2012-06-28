@@ -20,8 +20,58 @@
 
 zend_class_entry *uriparser_uri_ce;
 
+ZEND_BEGIN_ARG_INFO(uriparser_uri_parse_args, ZEND_SEND_BY_VAL)
+    ZEND_ARG_INFO(0, path)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto bool UriParser\Uri::parse(string path)
+    simple parse example that does something*/
+PHP_METHOD(UriParser_Uri, parse)
+{
+	char * path;
+	int len;
+	UriParserStateA state;
+	UriUriA uri;
+	
+	    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &path, &len) == FAILURE) {
+		    return;
+	    }
+	
+	state.uri = &uri;
+	if (uriParseUriA(&state, path) != URI_SUCCESS) {
+	    RETVAL_FALSE;
+	} else {
+	    RETVAL_TRUE;
+	}
+	
+	uriFreeUriMembersA(&uri);
+}
+/* }}} */
+
+ZEND_BEGIN_ARG_INFO(uriparser_uri_setscheme_args, ZEND_SEND_BY_VAL)
+    ZEND_ARG_INFO(0, scheme)
+ZEND_END_ARG_INFO()
+
+/* {{{ proto void UriParser\Uri::setScheme(scheme)
+ set the value of the scheme property */
+PHP_METHOD(UriParser_Uri, setScheme)
+{
+	char * scheme;
+	int len;
+    
+    
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &scheme, &len) == FAILURE) {
+		return;
+	}
+    
+    zend_update_property_stringl(uriparser_uri_ce, getThis(), "scheme", strlen("scheme"), scheme, len TSRMLS_CC);
+}
+/* }}} */
+
 /* {{{ uriparser_uri_test_args[] */
 zend_function_entry uriparser_uri_methods[] = {
+	PHP_ME(UriParser_Uri, parse, uriparser_uri_parse_args, ZEND_ACC_PUBLIC)
+	PHP_ME(UriParser_Uri, setScheme, uriparser_uri_setscheme_args, ZEND_ACC_PUBLIC)
 	ZEND_FE_END
 };
 /* }}} */
