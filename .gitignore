@@ -2,8 +2,11 @@
 
 # Object files
 *.o
+*.lo
 # Libraries
 *.lib
+*.la
+*.lai
 # Shared objects (inc. Windows DLLs)
 *.dll
 *.so
@@ -12,8 +15,8 @@
 *.out
 
 # http://www.gnu.org/software/automake
-Makefile.in
-Makefile.Global
+Makefile
+Makefile.*
 
 # http://www.gnu.org/software/autoconf
 /acinclude.m4
@@ -27,6 +30,7 @@ Makefile.Global
 
 # libtool
 /.deps
+libtool
 libtool.m4
 mkdep.awk
 scan_makefile_in.awk
@@ -35,17 +39,14 @@ shtool
 /mkinstalldirs
 
 # configure
-/config.guess
-/config.h
-/config.h.in
-/config.sub
-/config.nice
-/configure.in
+/config.*
+configure.in
 
 # phpize
 /run-tests.php
 
 # OSX stupidity
+Info.plist
 .DS_Store
 # Thumbnails
 ._*
