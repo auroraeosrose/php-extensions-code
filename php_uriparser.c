@@ -30,7 +30,7 @@ PHP_FUNCTION(uriparser_version)
 		return;
 	}
     
-	RETURN_STRING(URI_VER_ANSI, 1);
+	RETURN_STRING(URI_VER_ANSI);
 }
 /* }}} */
 
