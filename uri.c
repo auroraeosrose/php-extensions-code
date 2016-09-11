@@ -29,11 +29,11 @@ ZEND_END_ARG_INFO()
 PHP_METHOD(UriParser_Uri, parse)
 {
 	char * path;
-	int len;
+	size_t len;
 	UriParserStateA state;
 	UriUriA uri;
 	
-	    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &path, &len) == FAILURE) {
+	    if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &path, &len) == FAILURE) {
 		    return;
 	    }
 	
@@ -57,10 +57,10 @@ ZEND_END_ARG_INFO()
 PHP_METHOD(UriParser_Uri, setScheme)
 {
 	char * scheme;
-	int len;
+	size_t len;
     
     
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &scheme, &len) == FAILURE) {
+	if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &scheme, &len) == FAILURE) {
 		return;
 	}
     
